@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attack Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>{{ attack_type }} Attack Results</h1>
+    <a href="{{ url_for('correlation_attacks') }}">Click here to go attack page</a>      
+    <table>
+        <thead>
+            <tr>
+                <th>Round</th>
+                <th>utility Loss Percentage</th>
+                <th>Compromised Bits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in rounds_data %}
+            <tr>
+                <td>{{ data.round }}</td>
+                <td>{{ data.distortion_percentage }}</td>
+                <td>{{ data.distoredbits | default('N/A') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Distortion Percentage vs. Rounds</h2>
+    <canvas id="distortion-chart" width="400" height="200"></canvas>
+    <!-- 
+    <h2>Robustness vs. Rounds</h2>
+    <canvas id="robustness-chart" width="400" height="200"></canvas> -->
+
+    <script>
+        var roundsData = {{ rounds_data | tojson | safe }};
+
+        var attackRounds = roundsData.map(function(data) { return data.round; });
+        var distortionPercentages = roundsData.map(function(data) { return data.distortion_percentage; });
+        var robustnessResults = roundsData.map(function(data) { return data.robustness; });
+
+        // Create the Distortion chart
+        var distortionChartCtx = document.getElementById('distortion-chart').getContext('2d');
+        var distortionChart = new Chart(distortionChartCtx, {
+            type: 'line',
+            data: {
+                labels: attackRounds,
+                datasets: [{
+                    label: 'Distortion Percentage',
+                    data: distortionPercentages,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Distortion Percentage vs. Rounds'
+                }
+            }
+        });
+
+        // // Create the Robustness chart
+        // var robustnessChartCtx = document.getElementById('robustness-chart').getContext('2d');
+        // var robustnessChart = new Chart(robustnessChartCtx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: attackRounds,
+        //         datasets: [{
+        //             label: 'Robustness',
+        //             data: robustnessResults,
+        //             borderColor: 'rgba(255, 99, 132, 1)',
+        //             borderWidth: 2,
+        //             fill: false
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: false,
+        //         maintainAspectRatio: false,
+        //         title: {
+        //             display: true,
+        //             text: 'Robustness vs. Rounds'
+        //         }
+        //     }
+        // });
+    </script>
+</body>
+</html>

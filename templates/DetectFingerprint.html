@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Upload the Fingerprinted Dataset</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="static/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/jquery.dropotron.min.js"></script>
+    <script src="static/js/jquery.scrollgress.min.js"></script>
+    <script src="static/js/jquery.scrolly.min.js"></script>
+    <script src="static/js/jquery.slidertron.min.js"></script>
+    <script src="static/js/skel.min.js"></script>
+    <script src="static/js/skel-layers.min.js"></script>
+    <script src="static/js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="static/css/skel.css" />
+        <link rel="stylesheet" href="static/css/style.css" />
+        <link rel="stylesheet" href="static/css/style-xlarge.css" />
+    </noscript>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie/v9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie/v8.css" /><![endif]-->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="skel-layers-fixed" style="background-color: black!important; color: aliceblue;">
+        <nav id="nav">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('view') }}">View Dataset</a></li>
+                <li><a href="{{ url_for('DetectFingerprint') }}">DetectFingerprint</a></li>
+                <li><a href="{{ url_for('RobustFingerprinting') }}">RobustFingerprinting</a></li>
+                <li><a href="{{ url_for('Result') }}">Result</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <body>
+        <h1>Upload Files</h1>
+        <form action="/DetectData" method="post" enctype="multipart/form-data">
+            <label for="excel_file">Upload Excel File:</label>
+            <input type="file" name="file" accept=".xlsx, .xls" required>
+            <label for="gamma">Enter Gamma Value:</label>
+            <input type="text" name="gamma" required>
+
+            <button type="submit">Process</button>
+        </form>
+    </body>
+
+</body>
+
+</html>

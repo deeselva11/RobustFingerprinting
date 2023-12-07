@@ -2,12 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 import hashlib
-
 from flask import Flask, request, render_template, flash
-
 import ot
 import itertools
-
 from flask import *
 from flask_bootstrap import Bootstrap
 import random
@@ -22,8 +19,6 @@ app.config['SECRET_KEY'] = 'b0b4fbefdc48be27a6123605f02b6b86'
 global df, X_train, X_test, y_train, y_test
 
 apppath='C:\\Users\\Dell\\Downloads\\Project (3)\\New Folder\\Project\\Project\\CODE\\'
-
-
 
 
 

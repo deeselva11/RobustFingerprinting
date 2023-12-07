@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Upload the Vanilla Fingerprinted Dataset</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="static/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/jquery.dropotron.min.js"></script>
+    <script src="static/js/jquery.scrollgress.min.js"></script>
+    <script src="static/js/jquery.scrolly.min.js"></script>
+    <script src="static/js/jquery.slidertron.min.js"></script>
+    <script src="static/js/skel.min.js"></script>
+    <script src="static/js/skel-layers.min.js"></script>
+    <script src="static/js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="static/css/skel.css" />
+        <link rel="stylesheet" href="static/css/style.css" />
+        <link rel="stylesheet" href="static/css/style-xlarge.css" />
+    </noscript>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <header id="header" class="skel-layers-fixed" style="background-color: black!important; color: aliceblue;">
+        <nav id="nav">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('view') }}">View Dataset</a></li>
+	
+                <li><a href="{{ url_for('DetectFingerprint') }}">DetectFingerprint</a></li>
+                <li><a href="{{ url_for('RobustFingerprinting') }}">RobustFingerprinting</a></li>
+                <li><a href="{{ url_for('Result') }}">Result</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  
+        
+    <body>
+       
+        <div>
+            <h1>Results</h1>
+          
+            {{ result_df.to_html(classes='table table-bordered', index=False) | safe }}
+        </div>
+    
+    </body>
+    
+       
+            
+    
+</body>
+</html>

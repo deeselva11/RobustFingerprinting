@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Attack</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="static/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/jquery.dropotron.min.js"></script>
+    <script src="static/js/jquery.scrollgress.min.js"></script>
+    <script src="static/js/jquery.scrolly.min.js"></script>
+    <script src="static/js/jquery.slidertron.min.js"></script>
+    <script src="static/js/skel.min.js"></script>
+    <script src="static/js/skel-layers.min.js"></script>
+    <script src="static/js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="static/css/skel.css" />
+        <link rel="stylesheet" href="static/css/style.css" />
+        <link rel="stylesheet" href="static/css/style-xlarge.css" />
+    </noscript>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie/v9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie/v8.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Header -->
+<header id="header" class="skel-layers-fixed" style="background-color: black!important; color: aliceblue;">
+    <nav id="nav">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('view') }}">View Dataset</a></li>
+
+            <li><a href="{{ url_for('DetectFingerprint') }}">DetectFingerprint</a></li>
+            <li><a href="{{ url_for('RobustFingerprinting') }}">RobustFingerprinting</a></li>
+            <li><a href="{{ url_for('Result') }}">Result</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Correlation Attacks</h1>
+
+    <form method="POST" action="/attacks">
+        <label for="attack_type">Select Attack Type:</label>
+        <select id="attack_type" name="attack_type" required>
+            <option value="" disabled selected>Select an attack type</option>
+            <option value="rowwise">Row-wise Correlation Attack</option>
+            <option value="columnwise">Column-wise Correlation Attack</option>
+            <option value="Integrated">Integrated Correlation Attack</option>
+        </select>
+
+        <label for="fingerprint_type">Select Fingerprint options:</label>
+        <select id="fingerprint_type" name="fingerprint_type" required>
+            <option value="" disabled selected>Select a Fingerprint type</option>
+            <option value="SHA">SHA-256</option>
+            <option value="VanillaFingerprint">Vanilla Fingerprinting</option>
+        </select>
+
+        <label for="size">Enter Size:</label>
+        <input type="text" id="size" name="size" required>
+
+        <label for="gamma">Enter Gamma:</label>
+        <input type="text" id="gamma" name="gamma" required>
+        
+        <button type="submit">Perform Attack</button>
+    </form>
+</div>
+
+</body>
+</html>
